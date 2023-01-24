@@ -5,9 +5,10 @@ import lombok.*;
 import me.choicore.study.springbootjpashop.domain.Address;
 import me.choicore.study.springbootjpashop.domain.Order;
 import me.choicore.study.springbootjpashop.domain.OrderStatus;
-import me.choicore.study.springbootjpashop.dto.OrderSimpleQueryDTO;
-import me.choicore.study.springbootjpashop.repository.OrderRepository;
-import me.choicore.study.springbootjpashop.repository.OrderSearch;
+import me.choicore.study.springbootjpashop.repository.order.simplequery.OrderSimpleQueryDTO;
+import me.choicore.study.springbootjpashop.repository.order.OrderRepository;
+import me.choicore.study.springbootjpashop.repository.order.OrderSearch;
+import me.choicore.study.springbootjpashop.repository.order.simplequery.OrderSimpleQueryRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class OrderSimpleAPIController {
 
     private final OrderRepository orderRepository;
+    private final OrderSimpleQueryRepository orderSimpleQueryRepository;
 
     @GetMapping("/api/v1/simple-orders")
     public List<Order> ordersV1() {
@@ -49,7 +51,7 @@ public class OrderSimpleAPIController {
 
     @GetMapping("/api/v4/simple-orders")
     public List<OrderSimpleQueryDTO> ordersV4() {
-        List<OrderSimpleQueryDTO> result = orderRepository.findOrderDTOs();
+        List<OrderSimpleQueryDTO> result = orderSimpleQueryRepository.findOrderDTOs();
         return result;
     }
 

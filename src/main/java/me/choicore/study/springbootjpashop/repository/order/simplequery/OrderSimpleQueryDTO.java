@@ -1,4 +1,4 @@
-package me.choicore.study.springbootjpashop.dto;
+package me.choicore.study.springbootjpashop.repository.order.simplequery;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

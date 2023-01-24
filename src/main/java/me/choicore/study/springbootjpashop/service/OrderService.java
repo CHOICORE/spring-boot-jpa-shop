@@ -9,8 +9,8 @@ import me.choicore.study.springbootjpashop.domain.OrderItem;
 import me.choicore.study.springbootjpashop.domain.item.Item;
 import me.choicore.study.springbootjpashop.repository.ItemRepository;
 import me.choicore.study.springbootjpashop.repository.MemberRepository;
-import me.choicore.study.springbootjpashop.repository.OrderRepository;
-import me.choicore.study.springbootjpashop.repository.OrderSearch;
+import me.choicore.study.springbootjpashop.repository.order.OrderRepository;
+import me.choicore.study.springbootjpashop.repository.order.OrderSearch;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

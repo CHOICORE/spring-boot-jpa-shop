@@ -1,4 +1,4 @@
-package me.choicore.study.springbootjpashop.repository;
+package me.choicore.study.springbootjpashop.repository.order;
 
 
 import lombok.Getter;

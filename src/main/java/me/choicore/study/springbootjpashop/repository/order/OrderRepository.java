@@ -1,9 +1,9 @@
-package me.choicore.study.springbootjpashop.repository;
+package me.choicore.study.springbootjpashop.repository.order;
 
 
 import lombok.RequiredArgsConstructor;
 import me.choicore.study.springbootjpashop.domain.Order;
-import me.choicore.study.springbootjpashop.dto.OrderSimpleQueryDTO;
+import me.choicore.study.springbootjpashop.repository.order.simplequery.OrderSimpleQueryDTO;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -106,22 +106,34 @@ public class OrderRepository {
     }
 
     public List<Order> findAllWithMemberDelivery() {
-        List<Order> result = em.createQuery("select o from Order o" +
-                        " join fetch o.member m" +
-                        " join fetch o.delivery d", Order.class)
+        List<Order> result = em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
                 .getResultList();
         return result;
 
     }
 
-    public List<OrderSimpleQueryDTO> findOrderDTOs() {
-        List<OrderSimpleQueryDTO> result =
-                em.createQuery("select " +
-                                "new me.choicore.study.springbootjpashop.dto"
-                                + ".OrderSimpleQueryDTO(o.id,m.name,o.orderDateTime,o.orderStatus,d.address) from Order o"
-                                + " join o.member m"
-                                + " join o.delivery d", OrderSimpleQueryDTO.class)
-                        .getResultList();
+    public List<Order> findAllWithItem() {
+        List<Order> result = em.createQuery(
+                        "select distinct o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d" +
+                                " join fetch o.orderItems oi" +
+                                " join fetch oi.item i", Order.class)
+                .getResultList();
+        return result;
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        List<Order> result = em.createQuery(
+                        "select o from Order o" +
+                                " join fetch o.member m" +
+                                " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
         return result;
     }
 }

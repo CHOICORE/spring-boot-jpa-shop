@@ -6,7 +6,7 @@ import me.choicore.study.springbootjpashop.domain.Order;
 import me.choicore.study.springbootjpashop.domain.OrderStatus;
 import me.choicore.study.springbootjpashop.domain.item.Book;
 import me.choicore.study.springbootjpashop.exception.NotEnoughStockException;
-import me.choicore.study.springbootjpashop.repository.OrderRepository;
+import me.choicore.study.springbootjpashop.repository.order.OrderRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

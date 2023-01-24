@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.choicore.study.springbootjpashop.domain.Member;
 import me.choicore.study.springbootjpashop.domain.Order;
 import me.choicore.study.springbootjpashop.domain.item.Item;
-import me.choicore.study.springbootjpashop.repository.OrderSearch;
+import me.choicore.study.springbootjpashop.repository.order.OrderSearch;
 import me.choicore.study.springbootjpashop.service.ItemService;
 import me.choicore.study.springbootjpashop.service.MemberService;
 import me.choicore.study.springbootjpashop.service.OrderService;
