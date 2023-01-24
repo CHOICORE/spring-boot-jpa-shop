@@ -3,6 +3,7 @@ package me.choicore.study.springbootjpashop.repository;
 
 import lombok.RequiredArgsConstructor;
 import me.choicore.study.springbootjpashop.domain.Order;
+import me.choicore.study.springbootjpashop.dto.OrderSimpleQueryDTO;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -102,5 +103,25 @@ public class OrderRepository {
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
 
         return query.getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery() {
+        List<Order> result = em.createQuery("select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .getResultList();
+        return result;
+
+    }
+
+    public List<OrderSimpleQueryDTO> findOrderDTOs() {
+        List<OrderSimpleQueryDTO> result =
+                em.createQuery("select " +
+                                "new me.choicore.study.springbootjpashop.dto"
+                                + ".OrderSimpleQueryDTO(o.id,m.name,o.orderDateTime,o.orderStatus,d.address) from Order o"
+                                + " join o.member m"
+                                + " join o.delivery d", OrderSimpleQueryDTO.class)
+                        .getResultList();
+        return result;
     }
 }
