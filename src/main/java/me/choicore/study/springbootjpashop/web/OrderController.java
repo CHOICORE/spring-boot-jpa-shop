@@ -50,6 +50,7 @@ public class OrderController {
 
     @GetMapping("/orders")
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
+        log.info("[GET METHOD] >>> order list");
         List<Order> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
         return "order/orderList";
@@ -58,7 +59,7 @@ public class OrderController {
     @PostMapping("/orders/{itemId}/cancel")
     public String orderList(@PathVariable Long itemId) {
         orderService.cancelOrder(itemId);
-        return "order/orderList";
+        return "redirect:/orders";
     }
 }
 
